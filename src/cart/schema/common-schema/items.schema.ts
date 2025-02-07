@@ -4,13 +4,13 @@ import { HydratedDocument } from "mongoose";
 @Schema()
 export class CartItems {
     @Prop({ type: String, required: true })
-    readonly productId: string;
+    productId: string;
 
     @Prop({ type: Number, required: true })
-    readonly quantity: number;
+    quantity: number;
 
     @Prop({ type: Number, required: true })
-    readonly price: number;
+    price: number;
 }
 
 export type CartItemsDocument = HydratedDocument<CartItems>;

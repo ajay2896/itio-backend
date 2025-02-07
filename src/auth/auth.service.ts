@@ -50,12 +50,13 @@ export class AuthService {
     }
 
     async loginService(body: LoginDTO) {
-        const { emailId, password } = body;
+
+        const { mobileNumber, password } = body;
 
         // Check user exists or not in database
-        let user = await this.userModel.findOne({ emailId });
+        let user = await this.userModel.findOne({ mobileNumber });
 
-        if (!user) throw new UnauthorizedException('Invalid email or password');
+        if (!user) throw new UnauthorizedException('Invalid mobile number or password');
 
         // Compare hashed password
         const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -64,11 +65,14 @@ export class AuthService {
         // Generate JWT Token
         const payload = { emailId: user.mobileNumber, isAdmin:user.isAdmin, userType: user.userType, _id: user._id };
 
-        
+        console.log("---payload----",payload)
 
         const jwtToken = this.jwtService.sign(payload);
 
+        console.log("---jwtToken----",jwtToken)
+
         return { jwtToken };
+        
     }
     
 

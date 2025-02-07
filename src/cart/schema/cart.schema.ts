@@ -12,13 +12,13 @@ export class UsersCart {
     readonly items: CartItemsDocument[];
 
     @Prop({ type: Number, required: true, default: 0 })
-    readonly totalPrice: number;
+    totalPrice: number;
 
     @Prop({ type: Number, default: Date.now() })
-    readonly createdAt: number;
+    createdAt: number;
 
     @Prop({ type: Number, default: null })
-    readonly updatedAt: number;
+    updatedAt: number;
 }
 
 export type UsersCartDocument = HydratedDocument<UsersCart>;

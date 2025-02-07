@@ -1,19 +1,32 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, NotAcceptableException, NotFoundException, Param, Post } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { InjectConnection } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 @Controller('cart')
 export class CartController {
 
 
     constructor(
-        @InjectConnection() private readonly dbConnection,
         private readonly cartService: CartService
     ) {}
 
-    async AddItemsIntoCartService(productId,user) {
 
-        let { id } = user;
+    @Post("addCartItem")
+    addCartItem(@Body('productId') productId) {
+
+        const user = { id:"kjfnkjfnkrj", isAdmin:false };
+
+        return this.cartService.addItemsIntoCartService(productId,user);
+
+    }
+
+    @Delete("removedItems/:itemId")
+    removedItemsFromCart(@Param('itemId') itemId) {
+
+        const user = { id:"kjfnkjfnkrj", isAdmin:false };
+
+        return this.cartService.removeItemFromCartService(itemId,user);
 
     }
 

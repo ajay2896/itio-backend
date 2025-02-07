@@ -13,7 +13,7 @@ import { CartModule } from './cart/cart.module';
       isGlobal: true
     }),
 
-    MongooseModule.forRoot('mongodb+srv://ajay:ajay@cluster0.ga1hv.mongodb.net/'),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
 
     
     AuthModule,

@@ -5,11 +5,11 @@ export class RegistrationDTO {
 
     @IsNotEmpty()
     @IsString()
-    readonly password: string;
+    readonly mobileNumber: string;
 
     @IsNotEmpty()
     @IsString()
-    readonly mobileNumber: string;
+    readonly password: string;
 
 
     @IsNotEmpty()

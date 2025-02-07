@@ -5,7 +5,7 @@ export class LoginDTO {
 
     @IsNotEmpty()
     @IsString()
-    readonly emailId: string;
+    readonly mobileNumber: string;
 
     @IsNotEmpty()
     @IsString()
