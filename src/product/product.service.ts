@@ -14,7 +14,7 @@ export class ProductService {
 
     async createNewProduct(body, user) {
 
-        if(!user.isAdmin) throw new ForbiddenException("You not have to create this product");
+        if(!user.isAdmin) throw new ForbiddenException("You have no permission to use this api resoursces");
 
         body['createdBy'] = user._id;
 
@@ -33,7 +33,7 @@ export class ProductService {
 
     async getProductById(id, user) {
 
-        if(!user.isAdmin) throw new NotAcceptableException("You have no permission to retrive data");
+        // if(!user.isAdmin) throw new NotAcceptableException("You have no permission to use this api resoursces");
 
         let product = await this.productModel.findById(id).exec();
 
@@ -47,7 +47,7 @@ export class ProductService {
 
     async getAllProducts(clientQuery, user) {
 
-        if(!user.isAdmin) throw new NotAcceptableException("You have no permission to retrive data");
+        // if(!user.isAdmin) throw new NotAcceptableException("You have no permission to use this api resoursces");
 
         let products = await this.productModel.find().skip(Number(clientQuery.skip)).limit(Number(clientQuery.limit)).sort({_id:-1});
 
@@ -61,7 +61,7 @@ export class ProductService {
     async updateProduct(body, id, user) {
 
 
-        if (!user.isAdmin) throw new NotAcceptableException("You have no permission to update product");
+        if (!user.isAdmin) throw new NotAcceptableException("You have no permission to use this api resoursces");
         
     
         const updatedProduct = await this.productModel.findByIdAndUpdate(id, body);
@@ -77,7 +77,7 @@ export class ProductService {
     async deleteProduct(id, user) {
 
 
-        if (!user.isAdmin) throw new NotAcceptableException("You have no permission to delete this product");
+        if (!user.isAdmin) throw new NotAcceptableException("You have no permission to use this api resoursces");
     
         const deletedProduct = await this.productModel.findByIdAndDelete(id);
     

@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, NotAcceptableException, NotFoundException, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotAcceptableException, NotFoundException, Param, Post } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
+import { GetUser } from 'src/common/decorator/common.decorator';
 
 @Controller('cart')
 export class CartController {
@@ -12,19 +13,23 @@ export class CartController {
     ) {}
 
 
-    @Post("addCartItem")
-    addCartItem(@Body('productId') productId) {
+    @Get('getCartsItems')
+    getUserCarts(@GetUser() user:any) {
 
-        const user = { id:"kjfnkjfnkrj", isAdmin:false };
+        return this.cartService.getUserCart(user);
+
+    }
+
+
+    @Post("addCartItem")
+    addCartItem(@Body('productId') productId,@GetUser() user:any) {
 
         return this.cartService.addItemsIntoCartService(productId,user);
 
     }
 
-    @Delete("removedItems/:itemId")
-    removedItemsFromCart(@Param('itemId') itemId) {
-
-        const user = { id:"kjfnkjfnkrj", isAdmin:false };
+    @Delete("removedCartItems/:itemId")
+    removedItemsFromCart(@Param('itemId') itemId,@GetUser() user:any) {
 
         return this.cartService.removeItemFromCartService(itemId,user);
 

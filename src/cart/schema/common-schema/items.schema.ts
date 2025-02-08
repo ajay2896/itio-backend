@@ -3,13 +3,13 @@ import { HydratedDocument } from "mongoose";
 
 @Schema()
 export class CartItems {
-    @Prop({ type: String, required: true })
+    @Prop({ type: String })
     productId: string;
 
-    @Prop({ type: Number, required: true })
+    @Prop({ type: Number})
     quantity: number;
 
-    @Prop({ type: Number, required: true })
+    @Prop({ type: Number})
     price: number;
 }
 

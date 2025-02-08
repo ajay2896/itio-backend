@@ -8,7 +8,7 @@ export class UsersCart {
     @Prop({ type: String, required: true })
     readonly userId: string;
 
-    @Prop({ type: [CartItemsSchema], required: true })
+    @Prop({ type: [CartItemsSchema], default:[] })
     readonly items: CartItemsDocument[];
 
     @Prop({ type: Number, required: true, default: 0 })
@@ -17,7 +17,7 @@ export class UsersCart {
     @Prop({ type: Number, default: Date.now() })
     createdAt: number;
 
-    @Prop({ type: Number, default: null })
+    @Prop({ type: Number, default: 0 })
     updatedAt: number;
 }
 
